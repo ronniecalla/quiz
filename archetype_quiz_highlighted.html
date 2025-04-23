@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Archetype Quiz</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .question-card {
+            display: none;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        .question-card.active {
+            display: flex;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .options input[type="radio"] {
+            display: none;
+        }
+
+        .options input[type="radio"]:checked + span {
+            background-color: #430039;
+            color: #fff;
+            border-color: #430039;
+        }
+
+        .btn {
+            background-color: #430039;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .question {
+                font-size: 1rem;
+            }
+        }
+    
+<style>
+.options label {
+    display: block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.options input[type="radio"] {
+    display: none;
+}
+
+.options input[type="radio"]:checked + span {
+    display: block;
+    background-color: #430039;
+    color: #fff;
+    border-color: #430039;
+    border-radius: 4px;
+    padding: 0.75rem;
+}
+
+.options span {
+    display: block;
+}
+</style>
+</style>
+</head>
+<body>
+    <div class="container">
+        <form id="quiz-form">
+            <div class="question-card active" data-question="1">
+                <div class="question">When things start feeling chaotic in your business, you tend to…</div>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="Sovereign Hustler"><span>Take control and do it all myself.</span></label>
+                    <label><input type="radio" name="q1" value="Hidden Oracle"><span>Retreat and wait for clarity.</span></label>
+                    <label><input type="radio" name="q1" value="Shape-Shifting Muse"><span>Jump into something new and exciting.</span></label>
+                    <label><input type="radio" name="q1" value="Visionary Priestess"><span>Overthink and second-guess everything.</span></label>
+                </div>
+                <button type="button" class="btn" onclick="nextQuestion()">Next</button>
+            </div>
+            <div class="question-card" data-question="2">
+                <div class="question">How do people describe your presence?</div>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="Sovereign Hustler"><span>Bold and commanding.</span></label>
+                    <label><input type="radio" name="q2" value="Visionary Priestess"><span>Wise and mystical.</span></label>
+                    <label><input type="radio" name="q2" value="Shape-Shifting Muse"><span>Magnetic and full of ideas.</span></label>
+                    <label><input type="radio" name="q2" value="Hidden Oracle"><span>Quiet but powerful.</span></label>
+                </div>
+                <button type="button" class="btn" onclick="nextQuestion()">Next</button>
+            </div>
+            <div class="question-card" data-question="3">
+                <div class="question">What triggers burnout for you the most?</div>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="Sovereign Hustler"><span>Trying to do everything perfectly.</span></label>
+                    <label><input type="radio" name="q3" value="Shape-Shifting Muse"><span>Not knowing where to focus.</span></label>
+                    <label><input type="radio" name="q3" value="Visionary Priestess"><span>Feeling creatively boxed in.</span></label>
+                    <label><input type="radio" name="q3" value="Hidden Oracle"><span>Feeling unseen or misunderstood.</span></label>
+                </div>
+                <button type="button" class="btn" onclick="nextQuestion()">Next</button>
+            </div>
+            <div class="question-card" data-question="4">
+                <div class="question">If your business/career could be a sacred and divine pathway, what’s missing?</div>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="Sovereign Hustler"><span>Letting go of controlling everything.</span></label>
+                    <label><input type="radio" name="q4" value="Visionary Priestess"><span>Solid foundations for the right success path.</span></label>
+                    <label><input type="radio" name="q4" value="Shape-Shifting Muse"><span>Knowing the clear path to take.</span></label>
+                    <label><input type="radio" name="q4" value="Hidden Oracle"><span>Finally speaking your truth.</span></label>
+                </div>
+                <button type="button" class="btn" onclick="calculateResult()">See My Result</button>
+            </div>
+        </form>
+
+        <form id="mailchimp-form" action="https://thebeyondhumanmethod.us21.list-manage.com/subscribe/post?u=bf28df45131359bc94fdaaea8&amp;id=b2a5cca77a&amp;f_id=008341e6f0" method="post" target="_blank" style="display:none;">
+            <h2>Enter Your Info to Get Your Result</h2>
+            <input type="hidden" name="QUIZTYPE" id="mce-QUIZTYPE" />
+            <label>First Name <input type="text" name="FNAME" required></label><br><br>
+            <label>Last Name <input type="text" name="LNAME" required></label><br><br>
+            <label>Email <input type="email" name="EMAIL" required></label><br><br>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+
+        function nextQuestion() {
+            const currentCard = document.querySelector(`.question-card[data-question="${currentQuestion}"]`);
+            const selected = currentCard.querySelector('input[type="radio"]:checked');
+            if (!selected) {
+                alert("Please select an answer.");
+                return;
+            }
+            currentCard.classList.remove('active');
+            currentQuestion++;
+            const nextCard = document.querySelector(`.question-card[data-question="${currentQuestion}"]`);
+            if (nextCard) {
+                nextCard.classList.add('active');
+            }
+        }
+
+        function calculateResult() {
+            const values = ['q1', 'q2', 'q3', 'q4'].map(q => document.querySelector(`input[name="${q}"]:checked`).value);
+            const tally = {};
+            values.forEach(v => tally[v] = (tally[v] || 0) + 1);
+            const topResult = Object.keys(tally).reduce((a, b) => tally[a] > tally[b] ? a : b);
+            document.getElementById("quiz-form").style.display = "none";
+            document.getElementById("mailchimp-form").style.display = "block";
+            document.getElementById("mce-QUIZTYPE").value = topResult;
+        }
+    </script>
+</body>
+</html>
